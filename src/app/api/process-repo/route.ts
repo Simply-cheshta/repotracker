@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { fetchCommitHistory } from "@/lib/github";
-import { generateEvolutionIntelligence } from "@/lib/ai";
+import { generateAdvancedIntelligence } from "@/lib/ai"; 
 
 export async function POST(request: Request) {
   try {
@@ -8,12 +8,13 @@ export async function POST(request: Request) {
     if (!repoUrl) return NextResponse.json({ error: "Missing parameter: repoUrl" }, { status: 400 });
 
     const historyData = await fetchCommitHistory(repoUrl);
-    const analysisPayload = await generateEvolutionIntelligence(historyData);
+    const complexAnalytics = await generateAdvancedIntelligence(historyData);
 
     return NextResponse.json({
       status: "success",
-      timeline: analysisPayload.timeline,
-      architectureSummary: analysisPayload.architectureSummary
+      timeline: complexAnalytics.timeline,
+      architectureSummary: complexAnalytics.architectureSummary,
+      developerProfiles: complexAnalytics.developerProfiles 
     });
   } catch (error: any) {
     console.error("Pipeline breakdown:", error);
